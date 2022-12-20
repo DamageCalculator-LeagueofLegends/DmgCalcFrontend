@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "npx swc ts -d js && sass sass:css"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.3.23",
+    "typescript": "^4.9.4"
+  }
+}
