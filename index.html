@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,28 +8,172 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="import" href="about.html">
     <title>Document</title>
-    <script src="js/script.js"></script>
+
 </head>
+<header>
+    <h1>DamageCalc</h1>
+</header>
+
 <body>
-    <header>
-        <h1>DamageCalc</h1>
-    </header>
-    
-    <div class="chooseChampion">
-        <h2>Choose Champion</h2>
-        <button>(Champ)</button>
-    </div>
-    <div class="configureChampion">
-        <h2>Config Champion</h2>
-    </div>
-    <div class="chooseItems">
-        <h2>Choose Items:</h2>
-        <button>Item1</button>
-        <button>Item2</button>
-        <button>Item3</button>
-        <button>Item4</button>
-        <button>Item5</button>
-        <button>Item6</button>
+    <div class="entireContent">
+        <div class="participantOne">
+            <h2>Champion</h2>
+            <div class="chooseChampAndItems">
+                <div class="chooseChampion">
+                    <h3>Choose Champion</h2>
+
+                    <div id="buttonAndDropdownChamp">
+                        <button onclick="changeDropdownVisibility('dropdownContentChamp')" id="championButton">
+                            <img class="buttonImagesOnHoverEffect" id="championButtonImage"
+                                src="https://ddragon.leagueoflegends.com/cdn/12.21.1/img/champion/Seraphine.png">
+                            <!-- <img id="championButtonImage" src="img/greyChampButton.jpg"> -->
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="chooseItems">
+                    <h3>Choose Items:</h2>
+
+                    <div class="itemButtons">
+                        <div id="buttonAndDropdownItemOne">
+                            <button onclick="changeDropdownVisibility('dropdownContentItemOne')"
+                                class="choosingItemsButton" id="buttonItemOne">
+                                <img class="buttonImagesOnHoverEffect" id="itemOneButtonImage"
+                                    src="https://raw.communitydragon.org/12.22/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/6653_mage_t4_liandrysanguish.png">
+                                <!-- <img id="itemOneButtonImage" src="img/greyItemButtons.jpg"> -->
+                            </button>
+                        </div>
+                        <div id="buttonAndDropdownItemTwo">
+                            <button onclick="changeDropdownVisibility('dropdownContentItemTwo')"
+                                class="choosingItemsButton" id="buttonItemTwo">
+                                <img class="buttonImagesOnHoverEffect" id="itemTwoButtonImage"
+                                    src="img/greyItemButtons.jpg">
+                            </button>
+                        </div>
+                        <div id="buttonAndDropdownItemThree">
+                            <button onclick="changeDropdownVisibility('dropdownContentItemThree')"
+                                class="choosingItemsButton" id="buttonItemThree">
+                                <img class="buttonImagesOnHoverEffect" id="itemThreeButtonImage"
+                                    src="img/greyItemButtons.jpg">
+                            </button>
+                        </div>
+                        <div id="buttonAndDropdownItemFour">
+                            <button onclick="changeDropdownVisibility('dropdownContentItemFour')"
+                                class="choosingItemsButton" id="buttonItemFour">
+                                <img class="buttonImagesOnHoverEffect" id="itemFourButtonImage"
+                                    src="img/greyItemButtons.jpg">
+                            </button>
+                        </div>
+                        <div id="buttonAndDropdownItemFive">
+                            <button onclick="changeDropdownVisibility('dropdownContentItemFive')"
+                                class="choosingItemsButton" id="buttonItemFive">
+                                <img class="buttonImagesOnHoverEffect" id="itemFiveButtonImage"
+                                    src="img/greyItemButtons.jpg">
+                            </button>
+                        </div>
+                        <div id="buttonAndDropdownItemSix">
+                            <button onclick="changeDropdownVisibility('dropdownContentItemSix')"
+                                class="choosingItemsButton" id="buttonItemSix">
+                                <img class="buttonImagesOnHoverEffect" id="itemSixButtonImage"
+                                    src="img/greyItemButtons.jpg">
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="configureChampion">
+                <h3>Config Champion</h2>
+                <div class="champLevel">
+                    <h4>Champion Level</h3>
+                    <div class="inputGrid">
+                        <input type="range" min="1" max="18" value="1" class="rangeSliderStyle" id="championLevelRange">
+                        <p id="championLevelOutput"></p>
+                    </div>
+                </div>
+
+                <div class="abilityLevelGrid">
+                    <div class="abilityLevelGridItemQ">
+                        <h4>Q Level</h3>
+                        <div id="qLevelPicker" class="levelPickerStyle">
+                            <button class="abiliyButtonZero" id="qLevelZero"
+                                onclick="pickerButton('q', 'Zero')">0</button>
+                            <button id="qLevelOne" onclick="pickerButton('q', 'One')">1</button>
+                            <button id="qLevelTwo" onclick="pickerButton('q', 'Two')">2</button>
+                            <button id="qLevelThree" onclick="pickerButton('q', 'Three')">3</button>
+                            <button id="qLevelFour" onclick="pickerButton('q', 'Four')">4</button>
+                            <button class="abiliyButtonFive" id="qLevelFive"
+                                onclick="pickerButton('q', 'Five')">5</button>
+                        </div>
+                    </div>
+                    <div class="abilityLevelGridItemW">
+                        <h4>W Level</h3>
+                        <div id="wLevelPicker" class="levelPickerStyle">
+                            <button class="abiliyButtonZero" id="wLevelZero"
+                                onclick="pickerButton('w', 'Zero')">0</button>
+                            <button id="wLevelOne" onclick="pickerButton('w', 'One')">1</button>
+                            <button id="wLevelTwo" onclick="pickerButton('w', 'Two')">2</button>
+                            <button id="wLevelThree" onclick="pickerButton('w', 'Three')">3</button>
+                            <button id="wLevelFour" onclick="pickerButton('w', 'Four')">4</button>
+                            <button class="abiliyButtonFive" id="wLevelFive"
+                                onclick="pickerButton('w', 'Five')">5</button>
+                        </div>
+                    </div>
+                    <div class="abilityLevelGridItemE">
+                        <h4>E Level</h3>
+                        <div id="eLevelPicker" class="levelPickerStyle">
+                            <button class="abiliyButtonZero" id="eLevelZero"
+                                onclick="pickerButton('e', 'Zero')">0</button>
+                            <button id="eLevelOne" onclick="pickerButton('e', 'One')">1</button>
+                            <button id="eLevelTwo" onclick="pickerButton('e', 'Two')">2</button>
+                            <button id="eLevelThree" onclick="pickerButton('e', 'Three')">3</button>
+                            <button id="eLevelFour" onclick="pickerButton('e', 'Four')">4</button>
+                            <button class="abiliyButtonFive" id="eLevelFive"
+                                onclick="pickerButton('e', 'Five')">5</button>
+                        </div>
+                    </div>
+                    <div class="abilityLevelGridItemR">
+                        <h4>R Level</h3>
+                        <div id="rLevelPicker" class="levelPickerStyle">
+                            <button class="abiliyButtonZero" id="rLevelZero"
+                                onclick="pickerButton('r', 'Zero')">0</button>
+                            <button id="rLevelOne" onclick="pickerButton('r', 'One')">1</button>
+                            <button id="rLevelTwo" onclick="pickerButton('r', 'Two')">2</button>
+                            <button id="rLevelThree" onclick="pickerButton('r', 'Three')">3</button>
+                            <button id="rLevelFour" onclick="pickerButton('r', 'Four')">4</button>
+                            <button class="abiliyButtonFive" id="rLevelFive"
+                                onclick="pickerButton('r', 'Five')">5</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="participantTwo">
+            <h2>Dummy Stats</h2>
+            <h4>Health</h4>
+            <input type="text" onclick="this.select()" value="1000" id="dummyHealthInput" class="dummyInputFieldStyle">
+            <h4>Armor</h4>
+            <input type="text" onclick="this.select()" value="30" id="dummyArmorInput" class="dummyInputFieldStyle">
+            <h4>Magic Resistance</h4>
+            <input type="text" onclick="this.select()" value="30" id="dummyMRInput" class="dummyInputFieldStyle">
+        </div>
+        <div>
+            <h2>Choose Abilites</h2>
+            <div class="choosingActionToPerfom">
+                <button>AA</button>
+                <button>Q</button>
+                <button>W</button>
+                <button>E</button>
+                <button>R</button>
+            </div>
+        </div>
+        <div>
+            <h2>Damage Dealt</h2>
+        </div>
     </div>
 </body>
+<script src="js/script.js"></script>
+
 </html>

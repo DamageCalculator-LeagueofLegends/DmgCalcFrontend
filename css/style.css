@@ -1,5 +1,407 @@
+@keyframes buttonHoverAnimation {
+  99% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
 html {
   background-color: lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: gray;
+}
+header h1 {
+  padding: 10px;
+  margin: 0;
+  box-shadow: 0px 0.3px 5px 0.5px black;
+  text-align: center;
+}
+
+.participantOne {
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+}
+
+.chooseChampAndItems {
+  display: flex;
+}
+.chooseChampAndItems .chooseChampion {
+  padding-right: 10px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+.chooseChampAndItems .chooseChampion #buttonAndDropdownChamp {
+  position: relative;
+  align-self: left;
+}
+.chooseChampAndItems .chooseChampion #championButton {
+  padding: 0;
+  margin-top: 6px;
+  height: 120px;
+  width: 120px;
+  align-self: center;
+}
+.chooseChampAndItems .chooseItems {
+  padding: 0px 10px;
+  display: grid;
+  height: 250px;
+}
+.chooseChampAndItems .chooseItems .itemButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 190px;
+}
+.chooseChampAndItems .chooseItems .itemButtons .itemDropdownButtons {
+  margin: 5px;
+  height: 32px;
+  width: 32px;
+}
+.chooseChampAndItems .chooseItems .itemButtons .choosingItemsButton {
+  padding: 0;
+  height: 64px;
+  width: 64px;
+  margin: 5px;
+}
+
+.buttonImagesOnHoverEffect {
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+  transform: scale(1);
+  transition-duration: 300ms;
+}
+
+.buttonImagesOnHoverEffect:hover {
+  transform: scale(1.1);
+  transition-duration: 300ms;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.chooseChampAndItems button {
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+  border-style: hidden;
+}
+
+.dropdownContentStyle {
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+  background: rgba(172, 172, 172, 0.8);
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px grey;
+  z-index: 1;
+  transition: opacity 0.2s ease-out 0.1s;
+  margin-top: 4px;
+}
+.dropdownContentStyle .searchBarInputFieldStyle {
+  margin: 0;
+  border-style: hidden;
+  outline: none;
+  background-color: rgb(230, 230, 230);
+  transform: scale(1);
+  transition-duration: 300ms;
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px grey;
+  box-sizing: border-box;
+}
+.dropdownContentStyle .searchBarInputFieldStyle:focus {
+  transform: scale(1.01, 1.06);
+  transition-duration: 300ms;
+  background-color: white;
+}
+.dropdownContentStyle .searchBar .searchBarInputFieldStyle:focus + .searchIcon {
+  transform: scale(1.07);
+  transition-duration: 300ms;
+  opacity: 90%;
+  pointer-events: none;
+}
+.dropdownContentStyle .searchIcon:hover {
+  cursor: text;
+}
+.dropdownContentStyle .searchIcon {
+  position: absolute;
+  display: block;
+  left: 5px;
+  top: 1px;
+  width: 16px;
+  height: 16px;
+  z-index: 1;
+  transform: scale(1);
+  transition-duration: 300ms;
+  opacity: 60%;
+}
+.dropdownContentStyle .searchBar {
+  position: relative;
+  padding: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  height: 18px;
+  justify-content: space-between;
+}
+.dropdownContentStyle .gridForItems {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 4px;
+}
+
+.champDropdownButtons {
+  margin: 5px;
+  height: 60px;
+  width: 60px;
+}
+
+.filterIcon {
+  width: 16px;
+  height: 16px;
+  padding: 1px;
+  padding-right: 0;
+}
+
+.inputGrid {
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: 93% 7%;
+}
+.inputGrid .rangeSliderStyle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  align-self: center;
+  appearance: none;
+  width: 100%;
+  height: 9px;
+  background: skyblue;
+  outline: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+}
+.inputGrid .rangeSliderStyle:hover {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+.inputGrid p {
+  box-sizing: border-box;
+  padding-left: 7px;
+}
+
+.levelPickerStyle {
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+  width: fit-content;
+}
+.levelPickerStyle button {
+  font-size: 20px;
+  padding: 7px 13px;
+  border-style: none;
+  background-color: skyblue;
+  transition-duration: 200ms;
+}
+.levelPickerStyle button:hover {
+  z-index: 1;
+  box-shadow: 0.3px 0.3px 3px 0.5px gray;
+  transform: scale(1.05);
+  transition-duration: 200ms;
+}
+
+.abiliyButtonZero {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.abiliyButtonFive {
+  border-radius: 0px 5px 5px 0px;
+}
+
+.abilityLevelGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.abilityLevelGridItemQ {
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.abilityLevelGridItemW {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.abilityLevelGridItemE {
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.abilityLevelGridItemR {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.rangeSliderStyle::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0.3px 0.3px 3px 0.5px black;
+  background: darkgray;
+  cursor: pointer;
+}
+
+.rangeSliderStyle::-moz-range-thumb {
+  -moz-appearance: none;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0.1px 0.1px 3px 0.5px black;
+  background: darkgray;
+  cursor: pointer;
+}
+
+.rangeSliderStyle:-moz-focusring {
+  outline: 1px solid white;
+  outline-offset: -1px;
+}
+
+.champLevel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 30px;
+  text-decoration-line: underline;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 25px;
+}
+
+.entireContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.dummyInputFieldStyle {
+  font-size: 25px;
+  margin: 0;
+  border-style: hidden;
+  outline: none;
+  background-color: rgb(243, 243, 243);
+  transform: scale(1);
+  transition-duration: 300ms;
+  width: 210px;
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px grey;
+  box-sizing: border-box;
+}
+
+.dummyInputFieldStyle:focus {
+  transform: scale(1.03);
+  transition-duration: 300ms;
+  background-color: white;
+}
+
+.inputError {
+  outline: 1px solid red;
+}
+
+.participantTwo {
+  display: flex;
+  flex-direction: column;
+}
+.participantTwo h4 {
+  font-size: 25px;
+}
+
+.choosingActionToPerfom {
+  display: flex;
+  flex-direction: row;
+}
+.choosingActionToPerfom button {
+  font-size: 25px;
+  border-style: none;
+  background: white;
+  margin: 3px;
+  transition-duration: 0.3s;
+  width: 50px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+}
+.choosingActionToPerfom button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
 }
 
 /*# sourceMappingURL=style.css.map */
