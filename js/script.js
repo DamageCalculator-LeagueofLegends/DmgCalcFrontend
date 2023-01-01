@@ -329,34 +329,46 @@ function setInputFilter(textbox, inputFilter, errMsg) {
         "drop",
         "focusout"
     ].forEach(function(event) {
-        textbox.addEventListener(event, function() {
-            if (inputFilter(this.value)) {
-                this.oldValue = this.value;
-                this.oldSelectionStart = this.selectionStart;
-                this.oldSelectionEnd = this.selectionEnd;
-            } else if (Object.prototype.hasOwnProperty.call(this, "oldValue")) {
-                this.value = this.oldValue;
-                //this.classList.add("inputError");
-                this.setCustomValidity(errMsg);
-                this.reportValidity();
-                if (this.oldSelectionStart !== null && this.oldSelectionEnd !== null) {
-                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+        textbox.addEventListener(event, /*#__PURE__*/ _asyncToGenerator(function() {
+            return __generator(this, function(_state) {
+                //const errorMessage = document.getElementById(textbox.parentElement.children[1].id)
+                if (inputFilter(this.value)) {
+                    console.log("1");
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                // errorMessage.style.opacity = "0"
+                // await delay(300)
+                // errorMessage.style.visibility = "hidden"
+                } else if (Object.prototype.hasOwnProperty.call(this, "oldValue")) {
+                    console.log("2");
+                    this.value = this.oldValue;
+                    //this.classList.add("inputError");
+                    this.setCustomValidity(errMsg);
+                    this.reportValidity();
+                    if (this.oldSelectionStart !== null && this.oldSelectionEnd !== null) {
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    }
+                } else {
+                    console.log("3");
+                    this.value = "";
                 }
-            } else {
-                this.value = "";
-            }
-        });
+                return [
+                    2
+                ];
+            });
+        }));
     });
 }
 setInputFilter(document.getElementById("dummyHealthInput"), function(value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+    return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
+}, "Must be a number");
 setInputFilter(document.getElementById("dummyArmorInput"), function(value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+    return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
+}, "Must be a number");
 setInputFilter(document.getElementById("dummyMRInput"), function(value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+    return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
+}, "Must be a number");
 /**
 Button and Slider functions
  */ function searchbarFocusOnIconClick(searchBarID) {

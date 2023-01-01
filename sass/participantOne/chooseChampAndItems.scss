@@ -14,12 +14,11 @@
 
 .buttonImagesOnHoverEffect {
     @include cornerAndShadow($shadowColor: rgb(96, 96, 96));
-    transition-duration: 300ms;
+    @include standardTransitionTime();
 }
 
 .buttonImagesOnHoverEffect:hover {
     transform: scale(1.06);
-    transition-duration: 300ms;
 }
 
 #buttonChamp {

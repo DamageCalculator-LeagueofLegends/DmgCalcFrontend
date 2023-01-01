@@ -20,7 +20,7 @@
         background: skyblue; // color needs to change
         outline: none;
         opacity: 0.6;
-        transition: opacity 0.2s;
+        transition: opacity 0.1s;
         @include cornerAndShadow($shadowColor: gray);
     }
     .rangeSliderStyle::-webkit-slider-thumb {
@@ -61,7 +61,7 @@
     width: fit-content;
     button {
         border-style: none;
-        transition-duration: 200ms;
+        @include standardTransitionTime();
         width: 64px;
         height: 64px;
         background: skyblue;
@@ -70,7 +70,6 @@
         z-index: 1;
         box-shadow: 0.3px 0.3px 3px 0.5px gray;
         transform: scale(1.05);
-        transition-duration: 200ms;
     }
     .firstAbilityButton {
         border-radius: 0.5rem 0px 0px 0.5rem;

@@ -182,14 +182,21 @@ const dropdownButtonContent: VisibilityOfDropdowns[] = [
 ]
 
 function setInputFilter(textbox: Element, inputFilter: (value: string) => boolean, errMsg: string): void {
-    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function (event) {
-        textbox.addEventListener(event, function (this: (HTMLInputElement | HTMLTextAreaElement) & { oldValue: string; oldSelectionStart: number | null, oldSelectionEnd: number | null }) {
+
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach( function (event) {
+        textbox.addEventListener(event, async function (this: (HTMLInputElement | HTMLTextAreaElement) & { oldValue: string; oldSelectionStart: number | null, oldSelectionEnd: number | null }) {
+            //const errorMessage = document.getElementById(textbox.parentElement.children[1].id)
             if (inputFilter(this.value)) {
+                console.log("1")
                 this.oldValue = this.value;
                 this.oldSelectionStart = this.selectionStart;
                 this.oldSelectionEnd = this.selectionEnd;
+                // errorMessage.style.opacity = "0"
+                // await delay(300)
+                // errorMessage.style.visibility = "hidden"
             }
             else if (Object.prototype.hasOwnProperty.call(this, "oldValue")) {
+                console.log("2")
                 this.value = this.oldValue;
                 //this.classList.add("inputError");
                 this.setCustomValidity(errMsg);
@@ -200,6 +207,7 @@ function setInputFilter(textbox: Element, inputFilter: (value: string) => boolea
                 }
             }
             else {
+                console.log("3")
                 this.value = "";
             }
         });
@@ -207,14 +215,14 @@ function setInputFilter(textbox: Element, inputFilter: (value: string) => boolea
 }
 
 setInputFilter(document.getElementById("dummyHealthInput")!, function (value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+    return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
+}, "Must be a number");
 setInputFilter(document.getElementById("dummyArmorInput")!, function (value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+    return /^-?\d*[.,]?\d*$/.test(value) ; //  && (value === "" || parseInt(value) <= 999999)
+}, "Must be a number");
 setInputFilter(document.getElementById("dummyMRInput")!, function (value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+    return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
+}, "Must be a number");
 
 
 /**

@@ -141,7 +141,10 @@
     <div class="participantTwo">
         <h2>Dummy Stats</h2>
         <h4>Health</h4>
-        <input type="text" onclick="this.select()" value="1000" id="dummyHealthInput" class="dummyInputFieldStyle">
+        <div class="dummyInputFlexbox">
+            <input type="text" onclick="this.select()" value="1000" id="dummyHealthInput" class="dummyInputFieldStyle">
+            <p class="dummyInputErrorMessage" id="dummyErrorMessageHealth">Input must be between 0 and 999999</p>
+        </div>
         <h4>Armor</h4>
         <input type="text" onclick="this.select()" value="30" id="dummyArmorInput" class="dummyInputFieldStyle">
         <h4>Magic Resistance</h4>

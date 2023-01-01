@@ -9,7 +9,8 @@
   border-radius: 0.5rem;
   box-shadow: 0px 0.3px 3px 0.5px grey;
   z-index: 1;
-  transition: opacity 0.2s ease-out 0.1s;
+  transition: opacity;
+  transition-duration: 150ms;
   gap: 0.5rem;
 }
 
@@ -26,7 +27,7 @@
   width: 1rem;
   height: 1rem;
   z-index: 1;
-  transition-duration: 300ms;
+  transition-duration: 150ms;
   opacity: 0.6;
 }
 .searchBar .searchIcon:hover {
@@ -37,18 +38,16 @@
   outline: none;
   box-sizing: border-box;
   background-color: rgb(230, 230, 230);
-  transition-duration: 300ms;
+  transition-duration: 150ms;
   border-radius: 0.5rem;
   box-shadow: 0px 0.3px 3px 0.5px grey;
 }
 .searchBar .searchBarInputFieldStyle:focus {
   transform: scale(1.01, 1.06);
-  transition-duration: 300ms;
   background-color: white;
 }
 .searchBar .searchBarInputFieldStyle:focus + .searchIcon {
   transform: scale(1.07);
-  transition-duration: 300ms;
   opacity: 1;
   pointer-events: none;
 }
@@ -66,18 +65,17 @@
 }
 .gridForItems button:hover {
   transform: scale(1.05);
-  transition-duration: 300ms;
 }
 .gridForItems .champDropdownButtons {
   height: 3.75rem;
   width: 3.75rem;
-  transition-duration: 300ms;
+  transition-duration: 150ms;
   background: lightgray;
 }
 .gridForItems .itemDropdownButtons {
   height: 2rem;
   width: 2rem;
-  transition-duration: 300ms;
+  transition-duration: 150ms;
   background: lightgrey;
 }
 

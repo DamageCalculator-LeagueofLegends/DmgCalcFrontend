@@ -1,6 +1,10 @@
-@mixin cornerAndShadow($shadowColor: black) {
+@mixin cornerAndShadow($shadowColor: gray) {
     border-radius: 0.5rem;
     box-shadow: 0px 0.3px 3px 0.5px $shadowColor;
+}
+
+@mixin standardTransitionTime(){
+    transition-duration: 150ms;
 }
 
 $champIcon: 7.5rem;

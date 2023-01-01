@@ -10,7 +10,8 @@
     background: rgba(172, 172, 172, 1);
     @include cornerAndShadow($shadowColor: grey);
     z-index: 1;
-    transition: opacity 0.2s ease-out 0.1s;
+    transition: opacity;
+    @include standardTransitionTime();
     gap: 0.5rem;
 }
 
@@ -27,7 +28,7 @@
         width: $iconSize;
         height: $iconSize;
         z-index: 1;
-        transition-duration: 300ms;
+        @include standardTransitionTime();
         opacity: 0.6;
     }
     .searchIcon:hover {
@@ -39,18 +40,16 @@
         outline: none;
         box-sizing: border-box;
         background-color: rgb(230, 230, 230);
-        transition-duration: 300ms;
+        @include standardTransitionTime();
         @include cornerAndShadow($shadowColor: grey);
     }
     .searchBarInputFieldStyle:focus {
         transform: scale(1.01, 1.06);
-        transition-duration: 300ms;
         background-color: white;
     }
 
     .searchBarInputFieldStyle:focus + .searchIcon {
         transform: scale(1.07);
-        transition-duration: 300ms;
         opacity: 1;
         pointer-events: none;
     }
@@ -70,20 +69,19 @@
 
     button:hover{
         transform: scale(1.05);
-        transition-duration: 300ms;
     }
 
     .champDropdownButtons {
         height: calc($champIcon/2);
         width: calc($champIcon/2);
-        transition-duration: 300ms;
+        @include standardTransitionTime();
         background: lightgray;
     }
     
     .itemDropdownButtons {
         height: calc($itemIcon/2);
         width: calc($itemIcon/2);
-        transition-duration: 300ms;
+        @include standardTransitionTime();
         background: lightgrey;
     }
 }

@@ -7,7 +7,7 @@
   border-style: none;
   background: white;
   margin: 3px;
-  transition-duration: 0.3s;
+  transition-duration: 150ms;
   width: 50px;
   box-sizing: border-box;
   border-radius: 0.5rem;
@@ -15,7 +15,6 @@
 }
 .choosingActionToPerfom button:hover {
   transform: scale(1.1);
-  transition: transform 0.3s;
 }
 
 /*# sourceMappingURL=buttonsActions.css.map */
