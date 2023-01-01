@@ -1,0 +1,89 @@
+@import "../style.scss";
+
+$sliderThumbDim: 1.4rem;
+
+.champLevel{
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.championLevelInputGrid {
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 1rem;
+    .rangeSliderStyle {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        align-self: center;
+        appearance: none;
+        height: 0.5rem;
+        background: skyblue; // color needs to change
+        outline: none;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        @include cornerAndShadow($shadowColor: gray);
+    }
+    .rangeSliderStyle::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: $sliderThumbDim;
+        height: $sliderThumbDim; 
+        border-radius: 50%;
+        box-shadow: 0.3px 0.3px 3px 0.5px black;
+        background: darkgray; 
+        cursor: pointer;
+    }
+    .rangeSliderStyle::-moz-range-thumb {
+        -moz-appearance: none;
+        border: none;
+        width: $sliderThumbDim;
+        height: $sliderThumbDim; 
+        border-radius: 50%;
+        box-shadow: 0.1px 0.1px 3px 0.5px black;
+        background: darkgray; 
+        cursor: pointer;
+    }
+    .rangeSliderStyle:hover {
+        opacity: 1;
+        transition: opacity 0.2s;
+    }
+
+}
+
+.abilityLevelFlexbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.levelPickerStyle {
+    display: flex;
+    @include cornerAndShadow($shadowColor: black);
+    width: fit-content;
+    button {
+        border-style: none;
+        transition-duration: 200ms;
+        width: 64px;
+        height: 64px;
+        background: skyblue;
+    }
+    button:hover {
+        z-index: 1;
+        box-shadow: 0.3px 0.3px 3px 0.5px black;
+        transform: scale(1.05);
+        transition-duration: 200ms;
+    }
+    .firstAbilityButton {
+        border-radius: 0.5rem 0px 0px 0.5rem;
+    }
+    
+    .lastAbilityButton {
+        border-radius: 0px 0.5rem 0.5rem 0px;
+    }
+}
+
+
+
+
+

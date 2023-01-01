@@ -1,0 +1,44 @@
+@import "../style.scss";
+
+$champIcon: 7.5rem;
+$itemIcon: 4rem;
+
+.chooseChampAndItems {
+    display: flex;
+    gap: 1rem;
+
+    #buttonChamp {
+        height: $champIcon;
+        width: $champIcon;
+    }
+    .itemButtons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0.5rem;
+        .choosingItemsButton {
+            height: $itemIcon;
+            width: $itemIcon;
+        }
+    }
+
+    button {
+        border-radius: 0.5rem;
+        border-style: hidden;
+    }
+
+    .buttonImagesOnHoverEffect {
+        @include cornerAndShadow($shadowColor: rgb(96, 96, 96));
+        transition-duration: 300ms;
+    }
+    
+    .buttonImagesOnHoverEffect:hover {
+        transform: scale(1.06);
+        transition-duration: 300ms;
+    }
+}
+
+
+
+
+

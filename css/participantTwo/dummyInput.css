@@ -94,4 +94,36 @@ button {
   padding: 0;
 }
 
-/*# sourceMappingURL=style.css.map */
+.dummyInputFieldStyle {
+  font-size: 25px;
+  margin: 0;
+  border-style: hidden;
+  outline: none;
+  background-color: rgb(243, 243, 243);
+  transform: scale(1);
+  transition-duration: 300ms;
+  width: 210px;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0.3px 3px 0.5px grey;
+  box-sizing: border-box;
+}
+
+.dummyInputFieldStyle:focus {
+  transform: scale(1.03);
+  transition-duration: 300ms;
+  background-color: white;
+}
+
+.inputError {
+  outline: 1px solid red;
+}
+
+.participantTwo {
+  display: flex;
+  flex-direction: column;
+}
+.participantTwo h4 {
+  font-size: 25px;
+}
+
+/*# sourceMappingURL=dummyInput.css.map */

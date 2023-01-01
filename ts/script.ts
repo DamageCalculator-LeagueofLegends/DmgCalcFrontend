@@ -1,3 +1,7 @@
+// 
+// const fac = new FastAverageColor();
+
+
 const championButtonDropdownContent = `
 <button class="champDropdownButtons">t</button>
 <button class="champDropdownButtons">t</button>
@@ -17,18 +21,13 @@ const itemButtonDropdownContent = `
 <button class="itemDropdownButtons">t</button>
 <button class="itemDropdownButtons">t</button>
 `
-const listOfPickerButtonIDs = ["qLevelZero", "qLevelOne", "qLevelTwo", "qLevelThree", "qLevelFour", "qLevelFive"]
+const tempSlider: any = document.getElementById("championLevelRange")
+const sliderOutput = document.getElementById("championLevelOutput")
 
 type AbilityLevel = {
     value: number
     isChosen: boolean
 }
-const tempSlider: any = document.getElementById("championLevelRange")
-const sliderOutput = document.getElementById("championLevelOutput")
-tempSlider.value = 1
-sliderOutput!.innerHTML = tempSlider.value
-
-
 
 const championConfigData = {
     champLevel: 1,
@@ -37,7 +36,6 @@ const championConfigData = {
     e: 0,
     r: 0,
 }
-championConfigData.champLevel = parseInt(tempSlider.value)
 
 const abilityLevelPicker: Record<string, Record<string, AbilityLevel>> = {
     qLevelPicker: {
@@ -148,202 +146,40 @@ const abilityLevelPicker: Record<string, Record<string, AbilityLevel>> = {
 
 
 type VisibilityOfDropdowns = {
-    id: string
-    name: string
-    searchBarID: string
-    button: string
+    realID: string
     visible: boolean
 }
 
 const dropdownButtonContent: VisibilityOfDropdowns[] = [
     {
-        id: "buttonAndDropdownChamp",
-        name: "dropdownContentChamp",
-        searchBarID: "searchBarChampionID",
-        button: "championButtonImage",
+        realID: "Champ",
         visible: false,
     },
     {
-        id: "buttonAndDropdownItemOne",
-        name: "dropdownContentItemOne",
-        searchBarID: "itemOneSearchBarID",
-        button: "itemOneButtonImage",
+        realID: "ItemOne",
         visible: false,
     },
     {
-        id: "buttonAndDropdownItemTwo",
-        name: "dropdownContentItemTwo",
-        searchBarID: "itemTwoSearchBarID",
-        button: "itemTwoButtonImage",
+        realID: "ItemTwo",
         visible: false,
     },
     {
-        id: "buttonAndDropdownItemThree",
-        name: "dropdownContentItemThree",
-        searchBarID: "itemThreeSearchBarID",
-        button: "itemThreeButtonImage",
+        realID: "ItemThree",
         visible: false,
     },
     {
-        id: "buttonAndDropdownItemFour",
-        name: "dropdownContentItemFour",
-        searchBarID: "itemFourSearchBarID",
-        button: "itemFourButtonImage",
+        realID: "ItemFour",
         visible: false,
     },
     {
-        id: "buttonAndDropdownItemFive",
-        name: "dropdownContentItemFive",
-        searchBarID: "itemFiveSearchBarID",
-        button: "itemFiveButtonImage",
+        realID: "ItemFive",
         visible: false,
     },
     {
-        id: "buttonAndDropdownItemSix",
-        name: "dropdownContentItemSix",
-        searchBarID: "itemSixSearchBarID",
-        button: "itemSixButtonImage",
+        realID: "ItemSix",
         visible: false,
     }
 ]
-
-function setAbilityLevelDefault() {
-    for (const [pickerName, pickerContent] of Object.entries(abilityLevelPicker)) {
-        for (const [buttonName, buttonContent] of Object.entries(pickerContent)) {
-            if (buttonName.slice(1, 7) === "LevelZ") {
-
-                abilityLevelPicker[pickerName][buttonName].isChosen = true
-                const currButton = document.getElementById(buttonName)
-                currButton!.style.background = "gray"
-            }
-        }
-    }
-}
-
-setAbilityLevelDefault()
-
-function createDropdowns() {
-    for (const dropdownObj of dropdownButtonContent) {
-        const dropdownContent: HTMLDivElement = document.createElement('div')
-        const searchBar: HTMLDivElement = document.createElement('div')
-        searchBar.setAttribute("class", "searchBar")
-        const inputField = document.createElement("input")
-        inputField.setAttribute("class", "searchBarInputFieldStyle")
-        inputField.setAttribute("id", dropdownObj.searchBarID)
-        inputField.setAttribute("type", "text")
-        const searchIcon = document.createElement("img")
-        searchIcon.setAttribute("src", "img/pngfind.com-search-icon-png-545559.png")
-        searchIcon.setAttribute("onclick", `searchbarFocusOnIconClick(${dropdownObj.searchBarID})`)
-        searchIcon.setAttribute("class", "searchIcon")
-        const filterIcon = document.createElement("img")
-        filterIcon.setAttribute("src", "img/filter-filled-tool-symbol.png")
-        filterIcon.setAttribute("onclick", `filterIconAction(${dropdownObj.searchBarID})`)
-        filterIcon.setAttribute("class", "filterIcon")
-        searchBar.appendChild(inputField)
-        searchBar.appendChild(searchIcon)
-        searchBar.appendChild(filterIcon)
-        const gridWithButtons = document.createElement('div')
-        gridWithButtons.setAttribute("class", "gridForItems")
-
-        if (dropdownObj.id.slice(0, 18) === "buttonAndDropdownC") {
-            gridWithButtons.innerHTML = championButtonDropdownContent
-        } else if (dropdownObj.id.slice(0, 18) === "buttonAndDropdownI") {
-            gridWithButtons.innerHTML = itemButtonDropdownContent
-        }
-
-        dropdownContent.setAttribute("class", "dropdownContentStyle")
-        dropdownContent.setAttribute("id", dropdownObj.name)
-        dropdownContent.appendChild(searchBar)
-        dropdownContent.appendChild(gridWithButtons)
-        const dropdownButton = document.getElementById(dropdownObj.id)
-        dropdownButton!.appendChild(dropdownContent)
-    }
-    for (let i = 0; i < 7; i++) {
-
-        const searchBarDivWidth = document.getElementsByClassName("searchBar")[i].clientWidth
-        const searchBar = document.getElementById(dropdownButtonContent[i].searchBarID)
-        searchBar!.style.width = `${searchBarDivWidth - 18}px`
-        searchBar!.style.paddingLeft = "30px"
-
-    }
-}
-createDropdowns()
-
-
-
-
-const changeDropdownVisibility = async (dropdownName: string) => {
-    const currentDropdown = dropdownButtonContent.find(dropdown => dropdown.name === dropdownName)
-
-    const tempDropdownElement = document.getElementById(dropdownName)
-    if (currentDropdown!.visible) {
-        tempDropdownElement!.style.opacity = "0"
-        await delay(300);
-        tempDropdownElement!.style.visibility = "hidden"
-        currentDropdown!.visible = false
-    } else if (!currentDropdown!.visible) {
-        tempDropdownElement!.style.opacity = "1"
-        tempDropdownElement!.style.visibility = "visible"
-        currentDropdown!.visible = true
-    }
-}
-
-function pickerButton(abilityName: string, abilityLevel: string) {
-    const pickerDivID = `${abilityName}LevelPicker`
-    const pickerButtonID = `${abilityName}Level${abilityLevel}`
-    const currPickerDiv = document.getElementById(pickerDivID)
-    const currPickerButton = document.getElementById(pickerButtonID)
-    let currentActiveButton: any = document.getElementById(`${abilityName}LevelZero`)
-
-    for (const [pickerButtonName, pickerButtonValues] of Object.entries(abilityLevelPicker[pickerDivID])) {
-        if (pickerButtonName !== pickerButtonID)
-            if (pickerButtonValues.isChosen) {
-                currentActiveButton = document.getElementById(pickerButtonName)
-                abilityLevelPicker[pickerDivID][pickerButtonName].isChosen = false
-                currentActiveButton!.style.background = 'skyblue'
-            }
-    }
-
-    currPickerButton!.style.background = 'gray'
-    abilityLevelPicker[pickerDivID][pickerButtonID].isChosen = true
-    if (pickerButtonID.slice(0, 1) === "q") {
-        championConfigData.q = abilityLevelPicker[pickerDivID][pickerButtonID].value
-    } else if (pickerButtonID.slice(0, 1) === "w") {
-        championConfigData.w = abilityLevelPicker[pickerDivID][pickerButtonID].value
-    } else if (pickerButtonID.slice(0, 1) === "e") {
-        championConfigData.e = abilityLevelPicker[pickerDivID][pickerButtonID].value
-    } else if (pickerButtonID.slice(0, 1) === "r") {
-        championConfigData.r = abilityLevelPicker[pickerDivID][pickerButtonID].value
-    }
-
-}
-
-tempSlider.oninput = () => {
-    sliderOutput!.innerHTML = tempSlider.value
-    championConfigData.champLevel = parseInt(tempSlider.value)
-}
-
-window.onclick = async (event: any) => {
-    const visibleDropdowns = dropdownButtonContent.filter(dropdown => dropdown.visible === true)
-    if (visibleDropdowns) {
-        for (const dropdownObj of visibleDropdowns) {
-            if (
-                !event.target!.matches("img#" + dropdownObj!.button) && 
-                !event.target!.matches("#" + dropdownObj!.name) && 
-                !event.target!.matches("#" + dropdownObj.searchBarID) && 
-                !event.target.matches(".gridForItems") && 
-                !event.target.matches("img.searchIcon") && 
-                !event.target.matches("img.filterIcon")) {
-                const dropdown = document.getElementById(dropdownObj!.name)
-                dropdown!.style.opacity = "0"
-                await delay(300);
-                dropdown!.style.visibility = "hidden"
-                dropdownObj!.visible = false
-            }
-        }
-    }
-
-}
 
 function setInputFilter(textbox: Element, inputFilter: (value: string) => boolean, errMsg: string): void {
     ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function (event) {
@@ -381,12 +217,212 @@ setInputFilter(document.getElementById("dummyMRInput")!, function (value) {
 }, "Must be between 0 and 999999");
 
 
-const delay = (delayInms) => {
-    return new Promise(resolve => setTimeout(resolve, delayInms));
-}
-
+/**
+Button and Slider functions
+ */
 
 function searchbarFocusOnIconClick(searchBarID: any) {
     searchBarID.focus()
 }
 
+const changeDropdownVisibility = async (dropdownID: string) => {
+    const dropdownContentID = `dropdownContent${dropdownID}`
+    const currentDropdown = dropdownButtonContent.find(dropdown => dropdown.realID === dropdownID)
+    const tempDropdownElement = document.getElementById(dropdownContentID)
+
+    if (currentDropdown!.visible) {
+        tempDropdownElement!.style.opacity = "0"
+        await delay(300);
+        tempDropdownElement!.style.visibility = "hidden"
+        currentDropdown!.visible = false
+    } else if (!currentDropdown!.visible) {
+        tempDropdownElement!.style.opacity = "1"
+        tempDropdownElement!.style.visibility = "visible"
+        currentDropdown!.visible = true
+    }
+}
+
+function pickerButton(abilityName: string, abilityLevel: string) {
+
+    const pickerDivID = `${abilityName}LevelPicker`
+    const pickerButtonID = `${abilityName}Level${abilityLevel}`
+    const currPickerDiv = document.getElementById(pickerDivID)
+    const currPickerButton = document.getElementById(pickerButtonID)
+    let currentActiveButton: any = document.getElementById(`${abilityName}LevelZero`)
+
+
+    for (const [pickerButtonName, pickerButtonValues] of Object.entries(abilityLevelPicker[pickerDivID])) {
+        if (pickerButtonName !== pickerButtonID)
+            if (pickerButtonValues.isChosen) {
+                currentActiveButton = document.getElementById(pickerButtonName)
+                abilityLevelPicker[pickerDivID][pickerButtonName].isChosen = false
+                currentActiveButton!.style.background = "skyblue"
+            }
+    }
+
+    currPickerButton!.style.background = "gray"
+    abilityLevelPicker[pickerDivID][pickerButtonID].isChosen = true
+    if (pickerButtonID.slice(0, 1) === "q") {
+        championConfigData.q = abilityLevelPicker[pickerDivID][pickerButtonID].value
+    } else if (pickerButtonID.slice(0, 1) === "w") {
+        championConfigData.w = abilityLevelPicker[pickerDivID][pickerButtonID].value
+    } else if (pickerButtonID.slice(0, 1) === "e") {
+        championConfigData.e = abilityLevelPicker[pickerDivID][pickerButtonID].value
+    } else if (pickerButtonID.slice(0, 1) === "r") {
+        championConfigData.r = abilityLevelPicker[pickerDivID][pickerButtonID].value
+    }
+
+}
+
+tempSlider.oninput = () => {
+    sliderOutput!.innerHTML = tempSlider.value
+    championConfigData.champLevel = parseInt(tempSlider.value)
+}
+
+window.onclick = async (event: any) => {
+    const visibleDropdowns = dropdownButtonContent.filter(dropdown => dropdown.visible === true)
+    if (visibleDropdowns) {
+        for (const dropdownObj of visibleDropdowns) {
+            const buttonImageID = `buttonImage${dropdownObj.realID}`
+            const dropdownContentID = `dropdownContent${dropdownObj.realID}`
+            const searchBarID = `searchBarID${dropdownObj.realID}`
+            if (
+                !event.target!.matches("img#" + buttonImageID) &&
+                !event.target!.matches("#" + dropdownContentID) &&
+                !event.target!.matches("#" + searchBarID) &&
+                !event.target.matches(".gridForItems") &&
+                !event.target.matches("img.searchIcon") &&
+                !event.target.matches("img.filterIcon")) {
+                const dropdown = document.getElementById(dropdownContentID)
+                dropdown!.style.opacity = "0"
+                await delay(300);
+                dropdown!.style.visibility = "hidden"
+                dropdownObj!.visible = false
+            }
+        }
+    }
+}
+
+/**
+ The Following Functions create html elemnts when the website is built
+ */
+
+type url = string
+//for testing
+const seraLogo: url = "https://ddragon.leagueoflegends.com/cdn/12.21.1/img/champion/Seraphine.png"
+const liandrysLogo: url = "https://raw.communitydragon.org/12.22/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/6653_mage_t4_liandrysanguish.png"
+const greyImg: url = "img/greyChampButton.jpg"
+
+
+function adjustButtonLogo(urlOfImage: url, id: string) {
+    const buttonID = `button${id}`
+    const imgID = `buttonImage${id}`
+    const buttonToChangeImgFrom = document.getElementById(buttonID)
+    const imgDivWithNewImage = `
+    <img class="buttonImagesOnHoverEffect" id="${imgID}"
+    src="${urlOfImage}">
+    `
+    try {
+        buttonToChangeImgFrom.innerHTML = imgDivWithNewImage
+    } catch (error) {
+        console.log(`Button with the following ID ${buttonID} does not exist`)
+    }
+}
+
+function createDropdowns() {
+    for (const dropdownObj of dropdownButtonContent) {
+        const realID = dropdownObj.realID
+        const searchBarID = `searchBarID${realID}`
+        const dropdownAndButtonID = `buttonAndDropdown${realID}`
+        const dropdownContentID = `dropdownContent${realID}`
+
+
+
+        const inputField = document.createElement("input")
+        inputField.setAttribute("class", "searchBarInputFieldStyle")
+        inputField.setAttribute("id", searchBarID)
+        inputField.setAttribute("type", "text")
+
+        const searchIcon = document.createElement("img")
+        searchIcon.setAttribute("src", "img/pngfind.com-search-icon-png-545559.png")
+        searchIcon.setAttribute("onclick", `searchbarFocusOnIconClick(${searchBarID})`)
+        searchIcon.setAttribute("class", "searchIcon")
+
+        const filterIcon = document.createElement("img")
+        filterIcon.setAttribute("src", "img/filter-filled-tool-symbol.png")
+        filterIcon.setAttribute("onclick", `filterIconAction(${searchBarID})`)
+        filterIcon.setAttribute("class", "filterIcon")
+
+        const searchBar: HTMLDivElement = document.createElement('div')
+        searchBar.setAttribute("class", "searchBar")
+        searchBar.appendChild(inputField)
+        searchBar.appendChild(searchIcon)
+        searchBar.appendChild(filterIcon)
+
+        const gridWithButtons = document.createElement('div')
+        gridWithButtons.setAttribute("class", "gridForItems")
+        if (realID.slice(0, 4) === "Cham") {
+            gridWithButtons.innerHTML = championButtonDropdownContent
+        } else if (realID.slice(0, 4) === "Item") {
+            gridWithButtons.innerHTML = itemButtonDropdownContent
+        }
+
+        const dropdownContent: HTMLDivElement = document.createElement('div')
+        dropdownContent.setAttribute("class", "dropdownContentStyle")
+        dropdownContent.setAttribute("id", dropdownContentID)
+        dropdownContent.appendChild(searchBar)
+        dropdownContent.appendChild(gridWithButtons)
+
+        const buttonAndDropdown = document.getElementById(dropdownAndButtonID)
+        buttonAndDropdown!.appendChild(dropdownContent)
+    }
+
+    for (let i = 0; i < 7; i++) {
+        const searchBarID = `searchBarID${dropdownButtonContent[i].realID}`
+        const searchBarDivWidth = document.getElementsByClassName("searchBar")[i].clientWidth
+        const searchBar = document.getElementById(searchBarID)
+        searchBar!.style.width = `${searchBarDivWidth - 18}px`
+        searchBar!.style.paddingLeft = "30px"
+    }
+}
+
+function setAbilityLevelDefault() {
+    for (const [pickerName, pickerContent] of Object.entries(abilityLevelPicker)) {
+        for (const [buttonName, buttonContent] of Object.entries(pickerContent)) {
+            const currButton = document.getElementById(buttonName)
+            if (buttonName.slice(1, 7) === "LevelZ") {
+
+                abilityLevelPicker[pickerName][buttonName].isChosen = true
+                currButton!.style.background = "gray"
+            }
+        }
+    }
+}
+
+const buildHTMLPage = () => {
+
+
+    tempSlider.value = 1
+    sliderOutput!.innerHTML = tempSlider.value
+    championConfigData.champLevel = parseInt(tempSlider.value)
+
+    createDropdowns()
+    setAbilityLevelDefault()
+
+    for (const buttonDropdowns of dropdownButtonContent) {
+        if (buttonDropdowns.realID === "Champ")
+            adjustButtonLogo(seraLogo, "Champ")
+        else if (buttonDropdowns.realID === "ItemOne")
+            adjustButtonLogo(liandrysLogo, "ItemOne")
+        else
+            adjustButtonLogo(greyImg, buttonDropdowns.realID)
+    }
+}
+
+buildHTMLPage()
+
+
+// helper functions
+const delay = (delayInms) => {
+    return new Promise(resolve => setTimeout(resolve, delayInms));
+}

@@ -1,3 +1,5 @@
+// 
+// const fac = new FastAverageColor();
 function _arrayLikeToArray(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
     for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
@@ -170,18 +172,8 @@ var __generator = this && this.__generator || function(thisArg, body) {
 };
 var championButtonDropdownContent = '\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n<button class="champDropdownButtons">t</button>\n';
 var itemButtonDropdownContent = '\n<button class="itemDropdownButtons">t</button>\n<button class="itemDropdownButtons">t</button>\n<button class="itemDropdownButtons">t</button>\n<button class="itemDropdownButtons">t</button>\n<button class="itemDropdownButtons">t</button>\n';
-var listOfPickerButtonIDs = [
-    "qLevelZero",
-    "qLevelOne",
-    "qLevelTwo",
-    "qLevelThree",
-    "qLevelFour",
-    "qLevelFive"
-];
 var tempSlider = document.getElementById("championLevelRange");
 var sliderOutput = document.getElementById("championLevelOutput");
-tempSlider.value = 1;
-sliderOutput.innerHTML = tempSlider.value;
 var championConfigData = {
     champLevel: 1,
     q: 0,
@@ -189,7 +181,6 @@ var championConfigData = {
     e: 0,
     r: 0
 };
-championConfigData.champLevel = parseInt(tempSlider.value);
 var abilityLevelPicker = {
     qLevelPicker: {
         qLevelZero: {
@@ -298,170 +289,90 @@ var abilityLevelPicker = {
 };
 var dropdownButtonContent = [
     {
-        id: "buttonAndDropdownChamp",
-        name: "dropdownContentChamp",
-        searchBarID: "searchBarChampionID",
-        button: "championButtonImage",
+        realID: "Champ",
         visible: false
     },
     {
-        id: "buttonAndDropdownItemOne",
-        name: "dropdownContentItemOne",
-        searchBarID: "itemOneSearchBarID",
-        button: "itemOneButtonImage",
+        realID: "ItemOne",
         visible: false
     },
     {
-        id: "buttonAndDropdownItemTwo",
-        name: "dropdownContentItemTwo",
-        searchBarID: "itemTwoSearchBarID",
-        button: "itemTwoButtonImage",
+        realID: "ItemTwo",
         visible: false
     },
     {
-        id: "buttonAndDropdownItemThree",
-        name: "dropdownContentItemThree",
-        searchBarID: "itemThreeSearchBarID",
-        button: "itemThreeButtonImage",
+        realID: "ItemThree",
         visible: false
     },
     {
-        id: "buttonAndDropdownItemFour",
-        name: "dropdownContentItemFour",
-        searchBarID: "itemFourSearchBarID",
-        button: "itemFourButtonImage",
+        realID: "ItemFour",
         visible: false
     },
     {
-        id: "buttonAndDropdownItemFive",
-        name: "dropdownContentItemFive",
-        searchBarID: "itemFiveSearchBarID",
-        button: "itemFiveButtonImage",
+        realID: "ItemFive",
         visible: false
     },
     {
-        id: "buttonAndDropdownItemSix",
-        name: "dropdownContentItemSix",
-        searchBarID: "itemSixSearchBarID",
-        button: "itemSixButtonImage",
+        realID: "ItemSix",
         visible: false
     }
 ];
-function setAbilityLevelDefault() {
-    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
-    try {
-        for(var _iterator = Object.entries(abilityLevelPicker)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
-            var _step_value = _slicedToArray(_step.value, 2), pickerName = _step_value[0], pickerContent = _step_value[1];
-            var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
-            try {
-                for(var _iterator1 = Object.entries(pickerContent)[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
-                    var _step_value1 = _slicedToArray(_step1.value, 2), buttonName = _step_value1[0], buttonContent = _step_value1[1];
-                    if (buttonName.slice(1, 7) === "LevelZ") {
-                        abilityLevelPicker[pickerName][buttonName].isChosen = true;
-                        var currButton = document.getElementById(buttonName);
-                        currButton.style.background = "gray";
-                    }
+function setInputFilter(textbox, inputFilter, errMsg) {
+    [
+        "input",
+        "keydown",
+        "keyup",
+        "mousedown",
+        "mouseup",
+        "select",
+        "contextmenu",
+        "drop",
+        "focusout"
+    ].forEach(function(event) {
+        textbox.addEventListener(event, function() {
+            if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (Object.prototype.hasOwnProperty.call(this, "oldValue")) {
+                this.value = this.oldValue;
+                //this.classList.add("inputError");
+                this.setCustomValidity(errMsg);
+                this.reportValidity();
+                if (this.oldSelectionStart !== null && this.oldSelectionEnd !== null) {
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
                 }
-            } catch (err) {
-                _didIteratorError1 = true;
-                _iteratorError1 = err;
-            } finally{
-                try {
-                    if (!_iteratorNormalCompletion1 && _iterator1.return != null) {
-                        _iterator1.return();
-                    }
-                } finally{
-                    if (_didIteratorError1) {
-                        throw _iteratorError1;
-                    }
-                }
+            } else {
+                this.value = "";
             }
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally{
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return != null) {
-                _iterator.return();
-            }
-        } finally{
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
+        });
+    });
 }
-setAbilityLevelDefault();
-function createDropdowns() {
-    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
-    try {
-        for(var _iterator = dropdownButtonContent[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
-            var dropdownObj = _step.value;
-            var dropdownContent = document.createElement("div");
-            var searchBar = document.createElement("div");
-            searchBar.setAttribute("class", "searchBar");
-            var inputField = document.createElement("input");
-            inputField.setAttribute("class", "searchBarInputFieldStyle");
-            inputField.setAttribute("id", dropdownObj.searchBarID);
-            inputField.setAttribute("type", "text");
-            var searchIcon = document.createElement("img");
-            searchIcon.setAttribute("src", "img/pngfind.com-search-icon-png-545559.png");
-            searchIcon.setAttribute("onclick", "searchbarFocusOnIconClick(".concat(dropdownObj.searchBarID, ")"));
-            searchIcon.setAttribute("class", "searchIcon");
-            var filterIcon = document.createElement("img");
-            filterIcon.setAttribute("src", "img/filter-filled-tool-symbol.png");
-            filterIcon.setAttribute("onclick", "filterIconAction(".concat(dropdownObj.searchBarID, ")"));
-            filterIcon.setAttribute("class", "filterIcon");
-            searchBar.appendChild(inputField);
-            searchBar.appendChild(searchIcon);
-            searchBar.appendChild(filterIcon);
-            var gridWithButtons = document.createElement("div");
-            gridWithButtons.setAttribute("class", "gridForItems");
-            if (dropdownObj.id.slice(0, 18) === "buttonAndDropdownC") {
-                gridWithButtons.innerHTML = championButtonDropdownContent;
-            } else if (dropdownObj.id.slice(0, 18) === "buttonAndDropdownI") {
-                gridWithButtons.innerHTML = itemButtonDropdownContent;
-            }
-            dropdownContent.setAttribute("class", "dropdownContentStyle");
-            dropdownContent.setAttribute("id", dropdownObj.name);
-            dropdownContent.appendChild(searchBar);
-            dropdownContent.appendChild(gridWithButtons);
-            var dropdownButton = document.getElementById(dropdownObj.id);
-            dropdownButton.appendChild(dropdownContent);
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally{
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return != null) {
-                _iterator.return();
-            }
-        } finally{
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
-    }
-    for(var i = 0; i < 7; i++){
-        var searchBarDivWidth = document.getElementsByClassName("searchBar")[i].clientWidth;
-        var searchBar1 = document.getElementById(dropdownButtonContent[i].searchBarID);
-        searchBar1.style.width = "".concat(searchBarDivWidth - 18, "px");
-        searchBar1.style.paddingLeft = "30px";
-    }
+setInputFilter(document.getElementById("dummyHealthInput"), function(value) {
+    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
+}, "Must be between 0 and 999999");
+setInputFilter(document.getElementById("dummyArmorInput"), function(value) {
+    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
+}, "Must be between 0 and 999999");
+setInputFilter(document.getElementById("dummyMRInput"), function(value) {
+    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
+}, "Must be between 0 and 999999");
+/**
+Button and Slider functions
+ */ function searchbarFocusOnIconClick(searchBarID) {
+    searchBarID.focus();
 }
-createDropdowns();
 var changeDropdownVisibility = function() {
-    var _ref = _asyncToGenerator(function(dropdownName) {
-        var currentDropdown, tempDropdownElement;
+    var _ref = _asyncToGenerator(function(dropdownID) {
+        var dropdownContentID, currentDropdown, tempDropdownElement;
         return __generator(this, function(_state) {
             switch(_state.label){
                 case 0:
+                    dropdownContentID = "dropdownContent".concat(dropdownID);
                     currentDropdown = dropdownButtonContent.find(function(dropdown) {
-                        return dropdown.name === dropdownName;
+                        return dropdown.realID === dropdownID;
                     });
-                    tempDropdownElement = document.getElementById(dropdownName);
+                    tempDropdownElement = document.getElementById(dropdownContentID);
                     if (!currentDropdown.visible) return [
                         3,
                         2
@@ -493,7 +404,7 @@ var changeDropdownVisibility = function() {
             }
         });
     });
-    return function changeDropdownVisibility(dropdownName) {
+    return function changeDropdownVisibility(dropdownID) {
         return _ref.apply(this, arguments);
     };
 }();
@@ -547,7 +458,7 @@ tempSlider.oninput = function() {
 };
 window.onclick = function() {
     var _ref = _asyncToGenerator(function(event) {
-        var visibleDropdowns, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, dropdownObj, dropdown, err;
+        var visibleDropdowns, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, dropdownObj, buttonImageID, dropdownContentID, searchBarID, dropdown, err;
         return __generator(this, function(_state) {
             switch(_state.label){
                 case 0:
@@ -575,11 +486,14 @@ window.onclick = function() {
                         5
                     ];
                     dropdownObj = _step.value;
-                    if (!(!event.target.matches("img#" + dropdownObj.button) && !event.target.matches("#" + dropdownObj.name) && !event.target.matches("#" + dropdownObj.searchBarID) && !event.target.matches(".gridForItems") && !event.target.matches("img.searchIcon") && !event.target.matches("img.filterIcon"))) return [
+                    buttonImageID = "buttonImage".concat(dropdownObj.realID);
+                    dropdownContentID = "dropdownContent".concat(dropdownObj.realID);
+                    searchBarID = "searchBarID".concat(dropdownObj.realID);
+                    if (!(!event.target.matches("img#" + buttonImageID) && !event.target.matches("#" + dropdownContentID) && !event.target.matches("#" + searchBarID) && !event.target.matches(".gridForItems") && !event.target.matches("img.searchIcon") && !event.target.matches("img.filterIcon"))) return [
                         3,
                         4
                     ];
-                    dropdown = document.getElementById(dropdownObj.name);
+                    dropdown = document.getElementById(dropdownContentID);
                     dropdown.style.opacity = "0";
                     return [
                         4,
@@ -633,51 +547,162 @@ window.onclick = function() {
         return _ref.apply(this, arguments);
     };
 }();
-function setInputFilter(textbox, inputFilter, errMsg) {
-    [
-        "input",
-        "keydown",
-        "keyup",
-        "mousedown",
-        "mouseup",
-        "select",
-        "contextmenu",
-        "drop",
-        "focusout"
-    ].forEach(function(event) {
-        textbox.addEventListener(event, function() {
-            if (inputFilter(this.value)) {
-                this.oldValue = this.value;
-                this.oldSelectionStart = this.selectionStart;
-                this.oldSelectionEnd = this.selectionEnd;
-            } else if (Object.prototype.hasOwnProperty.call(this, "oldValue")) {
-                this.value = this.oldValue;
-                //this.classList.add("inputError");
-                this.setCustomValidity(errMsg);
-                this.reportValidity();
-                if (this.oldSelectionStart !== null && this.oldSelectionEnd !== null) {
-                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-                }
-            } else {
-                this.value = "";
-            }
-        });
-    });
+//for testing
+var seraLogo = "https://ddragon.leagueoflegends.com/cdn/12.21.1/img/champion/Seraphine.png";
+var liandrysLogo = "https://raw.communitydragon.org/12.22/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/6653_mage_t4_liandrysanguish.png";
+var greyImg = "img/greyChampButton.jpg";
+function adjustButtonLogo(urlOfImage, id) {
+    var buttonID = "button".concat(id);
+    var imgID = "buttonImage".concat(id);
+    var buttonToChangeImgFrom = document.getElementById(buttonID);
+    var imgDivWithNewImage = '\n    <img class="buttonImagesOnHoverEffect" id="'.concat(imgID, '"\n    src="').concat(urlOfImage, '">\n    ');
+    try {
+        buttonToChangeImgFrom.innerHTML = imgDivWithNewImage;
+    } catch (error) {
+        console.log("Button with the following ID ".concat(buttonID, " does not exist"));
+    }
 }
-setInputFilter(document.getElementById("dummyHealthInput"), function(value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
-setInputFilter(document.getElementById("dummyArmorInput"), function(value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
-setInputFilter(document.getElementById("dummyMRInput"), function(value) {
-    return /^-?\d*[.,]?\d*$/.test(value) && (value === "" || parseInt(value) <= 999999);
-}, "Must be between 0 and 999999");
+function createDropdowns() {
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = dropdownButtonContent[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var dropdownObj = _step.value;
+            var realID = dropdownObj.realID;
+            var searchBarID = "searchBarID".concat(realID);
+            var dropdownAndButtonID = "buttonAndDropdown".concat(realID);
+            var dropdownContentID = "dropdownContent".concat(realID);
+            var inputField = document.createElement("input");
+            inputField.setAttribute("class", "searchBarInputFieldStyle");
+            inputField.setAttribute("id", searchBarID);
+            inputField.setAttribute("type", "text");
+            var searchIcon = document.createElement("img");
+            searchIcon.setAttribute("src", "img/pngfind.com-search-icon-png-545559.png");
+            searchIcon.setAttribute("onclick", "searchbarFocusOnIconClick(".concat(searchBarID, ")"));
+            searchIcon.setAttribute("class", "searchIcon");
+            var filterIcon = document.createElement("img");
+            filterIcon.setAttribute("src", "img/filter-filled-tool-symbol.png");
+            filterIcon.setAttribute("onclick", "filterIconAction(".concat(searchBarID, ")"));
+            filterIcon.setAttribute("class", "filterIcon");
+            var searchBar = document.createElement("div");
+            searchBar.setAttribute("class", "searchBar");
+            searchBar.appendChild(inputField);
+            searchBar.appendChild(searchIcon);
+            searchBar.appendChild(filterIcon);
+            var gridWithButtons = document.createElement("div");
+            gridWithButtons.setAttribute("class", "gridForItems");
+            if (realID.slice(0, 4) === "Cham") {
+                gridWithButtons.innerHTML = championButtonDropdownContent;
+            } else if (realID.slice(0, 4) === "Item") {
+                gridWithButtons.innerHTML = itemButtonDropdownContent;
+            }
+            var dropdownContent = document.createElement("div");
+            dropdownContent.setAttribute("class", "dropdownContentStyle");
+            dropdownContent.setAttribute("id", dropdownContentID);
+            dropdownContent.appendChild(searchBar);
+            dropdownContent.appendChild(gridWithButtons);
+            var buttonAndDropdown = document.getElementById(dropdownAndButtonID);
+            buttonAndDropdown.appendChild(dropdownContent);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+    for(var i = 0; i < 7; i++){
+        var searchBarID1 = "searchBarID".concat(dropdownButtonContent[i].realID);
+        var searchBarDivWidth = document.getElementsByClassName("searchBar")[i].clientWidth;
+        var searchBar1 = document.getElementById(searchBarID1);
+        searchBar1.style.width = "".concat(searchBarDivWidth - 18, "px");
+        searchBar1.style.paddingLeft = "30px";
+    }
+}
+function setAbilityLevelDefault() {
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = Object.entries(abilityLevelPicker)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var _step_value = _slicedToArray(_step.value, 2), pickerName = _step_value[0], pickerContent = _step_value[1];
+            var _iteratorNormalCompletion1 = true, _didIteratorError1 = false, _iteratorError1 = undefined;
+            try {
+                for(var _iterator1 = Object.entries(pickerContent)[Symbol.iterator](), _step1; !(_iteratorNormalCompletion1 = (_step1 = _iterator1.next()).done); _iteratorNormalCompletion1 = true){
+                    var _step_value1 = _slicedToArray(_step1.value, 2), buttonName = _step_value1[0], buttonContent = _step_value1[1];
+                    var currButton = document.getElementById(buttonName);
+                    if (buttonName.slice(1, 7) === "LevelZ") {
+                        abilityLevelPicker[pickerName][buttonName].isChosen = true;
+                        currButton.style.background = "gray";
+                    }
+                }
+            } catch (err) {
+                _didIteratorError1 = true;
+                _iteratorError1 = err;
+            } finally{
+                try {
+                    if (!_iteratorNormalCompletion1 && _iterator1.return != null) {
+                        _iterator1.return();
+                    }
+                } finally{
+                    if (_didIteratorError1) {
+                        throw _iteratorError1;
+                    }
+                }
+            }
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+var buildHTMLPage = function() {
+    tempSlider.value = 1;
+    sliderOutput.innerHTML = tempSlider.value;
+    championConfigData.champLevel = parseInt(tempSlider.value);
+    createDropdowns();
+    setAbilityLevelDefault();
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = dropdownButtonContent[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var buttonDropdowns = _step.value;
+            if (buttonDropdowns.realID === "Champ") adjustButtonLogo(seraLogo, "Champ");
+            else if (buttonDropdowns.realID === "ItemOne") adjustButtonLogo(liandrysLogo, "ItemOne");
+            else adjustButtonLogo(greyImg, buttonDropdowns.realID);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+};
+buildHTMLPage();
+// helper functions
 var delay = function(delayInms) {
     return new Promise(function(resolve) {
         return setTimeout(resolve, delayInms);
     });
 };
-function searchbarFocusOnIconClick(searchBarID) {
-    searchBarID.focus();
-}

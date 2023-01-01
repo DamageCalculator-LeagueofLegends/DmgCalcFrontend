@@ -1,0 +1,178 @@
+@keyframes buttonHoverAnimation {
+  99% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+html {
+  background-color: lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: gray;
+}
+header h1 {
+  padding: 0.5rem;
+  box-shadow: 0px 0.3px 5px 0.5px black;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2rem;
+  text-decoration-line: underline;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+.entireContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button {
+  padding: 0;
+}
+
+.champLevel {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.championLevelInputGrid {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  gap: 1rem;
+}
+.championLevelInputGrid .rangeSliderStyle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  align-self: center;
+  appearance: none;
+  height: 0.5rem;
+  background: skyblue;
+  outline: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+}
+.championLevelInputGrid .rangeSliderStyle::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  box-shadow: 0.3px 0.3px 3px 0.5px black;
+  background: darkgray;
+  cursor: pointer;
+}
+.championLevelInputGrid .rangeSliderStyle::-moz-range-thumb {
+  -moz-appearance: none;
+  border: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  box-shadow: 0.1px 0.1px 3px 0.5px black;
+  background: darkgray;
+  cursor: pointer;
+}
+.championLevelInputGrid .rangeSliderStyle:hover {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.abilityLevelFlexbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.levelPickerStyle {
+  display: flex;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0.3px 3px 0.5px black;
+  width: fit-content;
+}
+.levelPickerStyle button {
+  border-style: none;
+  transition-duration: 200ms;
+  width: 64px;
+  height: 64px;
+  background: skyblue;
+}
+.levelPickerStyle button:hover {
+  z-index: 1;
+  box-shadow: 0.3px 0.3px 3px 0.5px black;
+  transform: scale(1.05);
+  transition-duration: 200ms;
+}
+.levelPickerStyle .firstAbilityButton {
+  border-radius: 0.5rem 0px 0px 0.5rem;
+}
+.levelPickerStyle .lastAbilityButton {
+  border-radius: 0px 0.5rem 0.5rem 0px;
+}
+
+/*# sourceMappingURL=championConfig.css.map */

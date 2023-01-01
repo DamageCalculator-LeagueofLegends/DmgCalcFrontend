@@ -1,0 +1,92 @@
+@import "../style.scss"; 
+@import "./chooseChampAndItems.scss";
+
+$iconSize: 1rem;
+
+.dropdownContentStyle {
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    background: rgba(172, 172, 172, 1);
+    @include cornerAndShadow($shadowColor: grey);
+    z-index: 1;
+    transition: opacity 0.2s ease-out 0.1s;
+    gap: 0.5rem;
+}
+
+.searchBar {
+    position: relative;
+    display: flex;
+    height: 1.125rem;
+    justify-content: space-between;
+    
+    .searchIcon {
+        position: absolute;
+        left: 0.5rem;
+        top: 0.07rem;
+        width: $iconSize;
+        height: $iconSize;
+        z-index: 1;
+        transition-duration: 300ms;
+        opacity: 0.6;
+    }
+    .searchIcon:hover {
+        cursor: text;  
+    }
+
+    .searchBarInputFieldStyle {
+        border-style: hidden;
+        outline: none;
+        box-sizing: border-box;
+        background-color: rgb(230, 230, 230);
+        transition-duration: 300ms;
+        @include cornerAndShadow($shadowColor: grey);
+    }
+    .searchBarInputFieldStyle:focus {
+        transform: scale(1.01, 1.06);
+        transition-duration: 300ms;
+        background-color: white;
+    }
+
+    .searchBarInputFieldStyle:focus + .searchIcon {
+        transform: scale(1.07);
+        transition-duration: 300ms;
+        opacity: 1;
+        pointer-events: none;
+    }
+    
+    .filterIcon {
+        width: $iconSize;
+        height: $iconSize;
+        padding: 0.07rem;
+        padding-right: 0;
+    }
+}
+
+.gridForItems {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    button:hover{
+        transform: scale(1.05);
+        transition-duration: 300ms;
+    }
+
+    .champDropdownButtons {
+        height: calc($champIcon/2);
+        width: calc($champIcon/2);
+        transition-duration: 300ms;
+        background: lightgray;
+    }
+    
+    .itemDropdownButtons {
+        height: calc($itemIcon/2);
+        width: calc($itemIcon/2);
+        transition-duration: 300ms;
+        background: lightgrey;
+    }
+}
