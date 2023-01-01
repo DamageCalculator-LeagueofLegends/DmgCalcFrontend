@@ -1,0 +1,9 @@
+@mixin cornerAndShadow($shadowColor: black) {
+    border-radius: 0.5rem;
+    box-shadow: 0px 0.3px 3px 0.5px $shadowColor;
+}
+
+$champIcon: 7.5rem;
+$itemIcon: 4rem;
+$sliderThumbDim: 1.4rem;
+$iconSize: 1rem;

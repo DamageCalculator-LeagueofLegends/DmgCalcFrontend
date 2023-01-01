@@ -1,6 +1,4 @@
-@import "../style.scss";
-
-$sliderThumbDim: 1.4rem;
+@import "../functionsAndVariables.scss";
 
 .champLevel{
     padding: 10px 0;
@@ -59,7 +57,7 @@ $sliderThumbDim: 1.4rem;
 
 .levelPickerStyle {
     display: flex;
-    @include cornerAndShadow($shadowColor: black);
+    @include cornerAndShadow($shadowColor: gray);
     width: fit-content;
     button {
         border-style: none;
@@ -70,7 +68,7 @@ $sliderThumbDim: 1.4rem;
     }
     button:hover {
         z-index: 1;
-        box-shadow: 0.3px 0.3px 3px 0.5px black;
+        box-shadow: 0.3px 0.3px 3px 0.5px gray;
         transform: scale(1.05);
         transition-duration: 200ms;
     }

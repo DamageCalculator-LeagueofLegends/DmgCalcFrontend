@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "fast-average-color": "^9.2.0",
+    "sass": "^1.57.1",
     "webpack": "^5.75.0"
   }
 }

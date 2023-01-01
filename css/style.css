@@ -1,11 +1,3 @@
-@keyframes buttonHoverAnimation {
-  99% {
-    visibility: hidden;
-  }
-  100% {
-    visibility: visible;
-  }
-}
 * {
   margin: 0;
 }
