@@ -37,6 +37,8 @@ const championConfigData = {
     r: 0,
 }
 
+const listOfPerformedActions = []
+
 const abilityLevelPicker: Record<string, Record<string, AbilityLevel>> = {
     qLevelPicker: {
         qLevelZero: {
@@ -183,7 +185,7 @@ const dropdownButtonContent: VisibilityOfDropdowns[] = [
 
 function setInputFilter(textbox: Element, inputFilter: (value: string) => boolean, errMsg: string): void {
 
-    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach( function (event) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function (event) {
         textbox.addEventListener(event, async function (this: (HTMLInputElement | HTMLTextAreaElement) & { oldValue: string; oldSelectionStart: number | null, oldSelectionEnd: number | null }) {
             //const errorMessage = document.getElementById(textbox.parentElement.children[1].id)
             if (inputFilter(this.value)) {
@@ -218,16 +220,71 @@ setInputFilter(document.getElementById("dummyHealthInput")!, function (value) {
     return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
 }, "Must be a number");
 setInputFilter(document.getElementById("dummyArmorInput")!, function (value) {
-    return /^-?\d*[.,]?\d*$/.test(value) ; //  && (value === "" || parseInt(value) <= 999999)
+    return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
 }, "Must be a number");
 setInputFilter(document.getElementById("dummyMRInput")!, function (value) {
     return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
 }, "Must be a number");
 
+function checkAvailabilityOfActionButtons() {
+    if (championConfigData.q > 0) {
+        const buttonQ = document.getElementById("championActionButtonQ")
+        buttonQ.style.opacity = "1"
+        buttonQ.style.display = "block"
+    } else {
+        const buttonQ = document.getElementById("championActionButtonQ")
+        buttonQ.style.opacity = "0"
+        buttonQ.style.display = "none"
+    }
+    if (championConfigData.w > 0) {
+        const buttonW = document.getElementById("championActionButtonW")
+        buttonW.style.opacity = "1"
+        buttonW.style.display = "block"
+    } else {
+        const buttonW = document.getElementById("championActionButtonW")
+        buttonW.style.opacity = "0"
+        buttonW.style.display = "none"
+    }
+    if (championConfigData.e > 0) {
+        const buttonE = document.getElementById("championActionButtonE")
+        buttonE.style.opacity = "1"
+        buttonE.style.display = "block"
+    } else {
+        const buttonE = document.getElementById("championActionButtonE")
+        buttonE.style.opacity = "0"
+        buttonE.style.display = "none"
+    }
+    if (championConfigData.r > 0) {
+        const buttonR = document.getElementById("championActionButtonR")
+        buttonR.style.opacity = "1"
+        buttonR.style.display = "block"
+    } else {
+        const buttonR = document.getElementById("championActionButtonR")
+        buttonR.style.opacity = "0"
+        buttonR.style.display = "none"
+    }
+}
 
 /**
 Button and Slider functions
  */
+
+const actionButtonsIDs = ["AA", "Q", "W", "E", "R", "IA1", "IA2", "IA3", "IA4", "IA5", "IA6"]
+
+function performActionButton(key: string) {
+    const actionListDiv = document.getElementById("listOfPerformedActions")
+    for (const buttonID of actionButtonsIDs) {
+        if (buttonID === key){
+            const button = document.getElementById(`championActionButton${buttonID}`)
+            const newActionToAdd = document.createElement("p")
+            newActionToAdd.setAttribute("class", "performedActions")
+            newActionToAdd.innerHTML = `${key}`
+            actionListDiv.appendChild(newActionToAdd)
+            
+        }
+    }
+
+}
 
 function searchbarFocusOnIconClick(searchBarID: any) {
     searchBarID.focus()
@@ -279,7 +336,7 @@ function pickerButton(abilityName: string, abilityLevel: string) {
     } else if (pickerButtonID.slice(0, 1) === "r") {
         championConfigData.r = abilityLevelPicker[pickerDivID][pickerButtonID].value
     }
-
+    checkAvailabilityOfActionButtons()
 }
 
 tempSlider.oninput = () => {

@@ -38,33 +38,33 @@
                     <h3>Choose Items:</h2>
                         <div class="itemButtons">
                             <div id="buttonAndDropdownItemOne">
-                                <button onclick="changeDropdownVisibility('ItemOne')"
-                                    class="choosingItemsButton" id="buttonItemOne">
+                                <button onclick="changeDropdownVisibility('ItemOne')" class="choosingItemsButton"
+                                    id="buttonItemOne">
                                 </button>
                             </div>
                             <div id="buttonAndDropdownItemTwo">
-                                <button onclick="changeDropdownVisibility('ItemTwo')"
-                                    class="choosingItemsButton" id="buttonItemTwo">
+                                <button onclick="changeDropdownVisibility('ItemTwo')" class="choosingItemsButton"
+                                    id="buttonItemTwo">
                                 </button>
                             </div>
                             <div id="buttonAndDropdownItemThree">
-                                <button onclick="changeDropdownVisibility('ItemThree')"
-                                    class="choosingItemsButton" id="buttonItemThree">
+                                <button onclick="changeDropdownVisibility('ItemThree')" class="choosingItemsButton"
+                                    id="buttonItemThree">
                                 </button>
                             </div>
                             <div id="buttonAndDropdownItemFour">
-                                <button onclick="changeDropdownVisibility('ItemFour')"
-                                    class="choosingItemsButton" id="buttonItemFour">
+                                <button onclick="changeDropdownVisibility('ItemFour')" class="choosingItemsButton"
+                                    id="buttonItemFour">
                                 </button>
                             </div>
                             <div id="buttonAndDropdownItemFive">
-                                <button onclick="changeDropdownVisibility('ItemFive')"
-                                    class="choosingItemsButton" id="buttonItemFive">
+                                <button onclick="changeDropdownVisibility('ItemFive')" class="choosingItemsButton"
+                                    id="buttonItemFive">
                                 </button>
                             </div>
                             <div id="buttonAndDropdownItemSix">
-                                <button onclick="changeDropdownVisibility('ItemSix')"
-                                    class="choosingItemsButton" id="buttonItemSix">
+                                <button onclick="changeDropdownVisibility('ItemSix')" class="choosingItemsButton"
+                                    id="buttonItemSix">
                                 </button>
                             </div>
                         </div>
@@ -150,14 +150,25 @@
         <h4>Magic Resistance</h4>
         <input type="text" onclick="this.select()" value="30" id="dummyMRInput" class="dummyInputFieldStyle">
     </div>
-    <div>
-        <h2>Choose Abilites</h2>
+    <div id="actionButtonsAndListOfActions">
+        <h2>Choose Abilities</h2>
         <div class="choosingActionToPerfom">
-            <button>AA</button>
-            <button>Q</button>
-            <button>W</button>
-            <button>E</button>
-            <button>R</button>
+            <div class="championActions">
+                <button onclick="performActionButton('AA')" id="championActionButtonAA" style="opacity: 1; display: block;">AA</button>
+                <button onclick="performActionButton('Q')" id="championActionButtonQ">Q</button>
+                <button onclick="performActionButton('W')" id="championActionButtonW">W</button>
+                <button onclick="performActionButton('E')" id="championActionButtonE">E</button>
+                <button onclick="performActionButton('R')" id="championActionButtonR">R</button>
+            </div>
+            <div class="itemActions">
+                <button onclick="performActionButton('IA1')" id="championActionButtonIA1">Item Active 1</button>
+                <button onclick="performActionButton('IA2')" id="championActionButtonIA2">Item Active 2</button>
+                <button onclick="performActionButton('IA3')" id="championActionButtonIA3">Item Active 3</button>
+                <button onclick="performActionButton('IA4')" id="championActionButtonIA4">Item Active 4</button>
+                <button onclick="performActionButton('IA5')" id="championActionButtonIA5">Item Active 5</button>
+                <button onclick="performActionButton('IA6')" id="championActionButtonIA6">Item Active 6</button>
+            </div>
+            <div id="listOfPerformedActions" class="performedActionsFlex"></div>
         </div>
     </div>
     <div>

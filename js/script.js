@@ -181,6 +181,7 @@ var championConfigData = {
     e: 0,
     r: 0
 };
+var listOfPerformedActions = [];
 var abilityLevelPicker = {
     qLevelPicker: {
         qLevelZero: {
@@ -369,9 +370,90 @@ setInputFilter(document.getElementById("dummyArmorInput"), function(value) {
 setInputFilter(document.getElementById("dummyMRInput"), function(value) {
     return /^-?\d*[.,]?\d*$/.test(value); //  && (value === "" || parseInt(value) <= 999999)
 }, "Must be a number");
+function checkAvailabilityOfActionButtons() {
+    if (championConfigData.q > 0) {
+        var buttonQ = document.getElementById("championActionButtonQ");
+        buttonQ.style.opacity = "1";
+        buttonQ.style.display = "block";
+    } else {
+        var buttonQ1 = document.getElementById("championActionButtonQ");
+        buttonQ1.style.opacity = "0";
+        buttonQ1.style.display = "none";
+    }
+    if (championConfigData.w > 0) {
+        var buttonW = document.getElementById("championActionButtonW");
+        buttonW.style.opacity = "1";
+        buttonW.style.display = "block";
+    } else {
+        var buttonW1 = document.getElementById("championActionButtonW");
+        buttonW1.style.opacity = "0";
+        buttonW1.style.display = "none";
+    }
+    if (championConfigData.e > 0) {
+        var buttonE = document.getElementById("championActionButtonE");
+        buttonE.style.opacity = "1";
+        buttonE.style.display = "block";
+    } else {
+        var buttonE1 = document.getElementById("championActionButtonE");
+        buttonE1.style.opacity = "0";
+        buttonE1.style.display = "none";
+    }
+    if (championConfigData.r > 0) {
+        var buttonR = document.getElementById("championActionButtonR");
+        buttonR.style.opacity = "1";
+        buttonR.style.display = "block";
+    } else {
+        var buttonR1 = document.getElementById("championActionButtonR");
+        buttonR1.style.opacity = "0";
+        buttonR1.style.display = "none";
+    }
+}
 /**
 Button and Slider functions
- */ function searchbarFocusOnIconClick(searchBarID) {
+ */ var actionButtonsIDs = [
+    "AA",
+    "Q",
+    "W",
+    "E",
+    "R",
+    "IA1",
+    "IA2",
+    "IA3",
+    "IA4",
+    "IA5",
+    "IA6"
+];
+function performActionButton(key) {
+    var actionListDiv = document.getElementById("listOfPerformedActions");
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+    try {
+        for(var _iterator = actionButtonsIDs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+            var buttonID = _step.value;
+            if (buttonID === key) {
+                var button = document.getElementById("championActionButton".concat(buttonID));
+                var newActionToAdd = document.createElement("p");
+                newActionToAdd.setAttribute("class", "performedActions");
+                newActionToAdd.innerHTML = "".concat(key);
+                actionListDiv.appendChild(newActionToAdd);
+                console.log(button);
+            }
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally{
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+            }
+        } finally{
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+function searchbarFocusOnIconClick(searchBarID) {
     searchBarID.focus();
 }
 var changeDropdownVisibility = function() {
@@ -463,6 +545,7 @@ function pickerButton(abilityName, abilityLevel) {
     } else if (pickerButtonID.slice(0, 1) === "r") {
         championConfigData.r = abilityLevelPicker[pickerDivID][pickerButtonID].value;
     }
+    checkAvailabilityOfActionButtons();
 }
 tempSlider.oninput = function() {
     sliderOutput.innerHTML = tempSlider.value;

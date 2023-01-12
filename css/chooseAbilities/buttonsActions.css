@@ -1,20 +1,64 @@
 .choosingActionToPerfom {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  gap: 0.75rem;
 }
-.choosingActionToPerfom button {
-  font-size: 25px;
+
+.championActions {
+  display: flex;
+  gap: 0.5rem;
+}
+.championActions button {
+  font-size: 1.5rem;
   border-style: none;
   background: white;
-  margin: 3px;
+  opacity: 0;
+  display: none;
   transition-duration: 150ms;
   width: 50px;
   box-sizing: border-box;
   border-radius: 0.5rem;
   box-shadow: 0px 0.3px 3px 0.5px gray;
 }
-.choosingActionToPerfom button:hover {
+.championActions button:hover {
   transform: scale(1.1);
+}
+
+.itemActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.itemActions button {
+  opacity: 0;
+  display: none;
+  font-size: 1.5rem;
+  padding: 0.2rem;
+  border-style: none;
+  background: white;
+  transition-duration: 150ms;
+  width: fit-content;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+}
+.itemActions button:hover {
+  transform: scale(1.1);
+}
+
+.performedActions {
+  border-radius: 0.5rem;
+  box-shadow: 0px 0.3px 3px 0.5px gray;
+  background: lightgreen;
+  width: fit-content;
+  padding: 0.5rem;
+}
+
+.performedActionsFlex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 /*# sourceMappingURL=buttonsActions.css.map */

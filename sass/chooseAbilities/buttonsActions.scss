@@ -2,13 +2,19 @@
 
 .choosingActionToPerfom{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.championActions{
+    display: flex;
+    gap: 0.5rem;
     button{
-        font-size: 25px;
+        font-size: 1.5rem;
         border-style: none;
         background: white;
-        //padding: 5px 15px;
-        margin: 3px;
+        opacity: 0;
+        display: none;
         @include standardTransitionTime();
         width: 50px;
         box-sizing: border-box;
@@ -17,4 +23,39 @@
     button:hover{
         transform: scale(1.1);
     }
+}
+
+.itemActions{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    button{
+        opacity: 0;
+        display: none;
+        font-size: 1.5rem;
+        padding: 0.2rem;
+        border-style: none;
+        background: white;
+        @include standardTransitionTime();
+        width: fit-content;
+        box-sizing: border-box;
+        @include cornerAndShadow($shadowColor:gray);
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
+}
+
+.performedActions{
+    @include cornerAndShadow($shadowColor: gray);
+    background: lightgreen;
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+.performedActionsFlex{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }
